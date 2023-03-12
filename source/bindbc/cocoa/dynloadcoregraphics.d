@@ -4,79 +4,62 @@ Utilities from the CoreGraphics framework.
 Copyright: Guillaume Piolat 2016.
 License:   $(LINK2 http://www.boost.org/LICENSE_1_0.txt, Boost License 1.0)
 */
-module bindbc.cocoa.coregraphics;
+module bindbc.cocoa.dynloadcoregraphics;
 
 import bindbc.cocoa.runtime;
 import bindbc.cocoa.foundation;
-import dplug.core.sharedlib;
 
 import dplug.core.nogc;
 
+import bindbc.loader;
 
-version(OSX)
-    enum libNames = "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics";
-else
-    enum libNames = "";
+private {
+    SharedLib lib;
+    CoreGraphicsSupport loadedVersion;
+}
 
+enum CoreGraphicsSupport {
+    noLibrary,
+    badLibrary,
+    coreGraphicsLibrary
+}
 
-class DerelictCoreGraphicsLoader : SharedLibLoader
+void unloadCoreGraphics()
 {
-    public
-    {
-        nothrow @nogc:
-        this()
-        {
-            super(libNames);
+    if(lib != invalidHandle) {
+        lib.unload();
+    }
+}
+
+CoreGraphicsSupport loadedCoreGraphicsVersion() { return loadedVersion; }
+
+bool isCoreGraphicsLoaded() { return lib != invalidHandle; }
+
+CoreGraphicsSupport loadCoreGraphics(const(char)* libName)
+{
+    // If the library isn't yet loaded, load it now.
+    if(lib == invalidHandle) {
+        lib = load(libName);
+        if(lib == invalidHandle) {
+            return CoreGraphicsSupport.noLibrary;
         }
-
-        override void loadSymbols()
-        {
-            bindFunc(cast(void**)&CGContextDrawImage, "CGContextDrawImage");
-
-            bindFunc(cast(void**)&CGImageCreate, "CGImageCreate");
-            bindFunc(cast(void**)&CGImageRelease, "CGImageRelease");
-
-            bindFunc(cast(void**)&CGDataProviderCreateWithData, "CGDataProviderCreateWithData");
-            bindFunc(cast(void**)&CGDataProviderRelease, "CGDataProviderRelease");            
-        }
     }
+
+    auto errCount = errorCount();
+
+    lib.bindSymbol(cast(void**)&CGContextDrawImage, "CGContextDrawImage");
+
+    lib.bindSymbol(cast(void**)&CGImageCreate, "CGImageCreate");
+    lib.bindSymbol(cast(void**)&CGImageRelease, "CGImageRelease");
+
+    lib.bindSymbol(cast(void**)&CGDataProviderCreateWithData, "CGDataProviderCreateWithData");
+    lib.bindSymbol(cast(void**)&CGDataProviderRelease, "CGDataProviderRelease");
+    
+    if(errorCount() != errCount) loadedVersion = CoreGraphicsSupport.badLibrary;
+    else loadedVersion = CoreGraphicsSupport.coreGraphicsLibrary;
+
+    return loadedVersion;
 }
-
-private __gshared DerelictCoreGraphicsLoader DerelictCoreGraphics;
-
-private __gshared loaderCounterCG = 0;
-
-// Call this each time a novel owner uses these functions
-// TODO: hold a mutex, because this isn't thread-safe
-void acquireCoreGraphicsFunctions() nothrow @nogc
-{
-    if (DerelictCoreGraphics is null)  // You only live once
-    {
-        DerelictCoreGraphics = mallocNew!DerelictCoreGraphicsLoader();
-        DerelictCoreGraphics.load();
-    }
-}
-
-// Call this each time a novel owner releases a Cocoa functions
-// TODO: hold a mutex, because this isn't thread-safe
-void releaseCoreGraphicsFunctions() nothrow @nogc
-{
-    /*if (--loaderCounterCG == 0)
-    {
-        DerelictCoreServices.unload();
-        DerelictCoreServices.destroyFree();
-    }*/
-}
-
-unittest
-{
-    version(OSX)
-    {
-        acquireCoreGraphicsFunctions();
-        releaseCoreGraphicsFunctions();
-    }
-}
-
 
 alias CGPoint = NSPoint;
 alias CGSize = NSSize;

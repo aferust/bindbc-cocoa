@@ -11,7 +11,7 @@ import std.string;
 import bindbc.cocoa.runtime;
 import bindbc.cocoa.foundation;
 import bindbc.cocoa.coreimage;
-import bindbc.cocoa.coregraphics;
+import bindbc.cocoa.dynloadcoregraphics;
 
 version(X86)
     version = AnyX86;

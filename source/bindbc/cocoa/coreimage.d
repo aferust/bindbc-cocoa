@@ -8,7 +8,7 @@ module bindbc.cocoa.coreimage;
 
 import bindbc.cocoa.runtime;
 import bindbc.cocoa.foundation;
-import bindbc.cocoa.coregraphics;
+import bindbc.cocoa.dynloadcoregraphics;
 
 
 struct CIContext
