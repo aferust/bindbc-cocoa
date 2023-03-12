@@ -1,0 +1,6 @@
+{
+	"name": "test1",
+    "dependencies": {
+        "bindbc-cocoa": {"path": "../../"}
+    }
+}
