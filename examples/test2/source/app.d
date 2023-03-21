@@ -12,7 +12,6 @@ void main(string[] args){
     //auto _cg = loadCoreGraphics("D:/GNUstep/x64/Release/bin/gnustep-gui-0.dll"); writeln(_cg);
     auto _ak = loadAppkit("D:/GNUstep/x64/Release/bin/gnustep-gui-0.dll"); writeln(_ak); /// ????
 
-    //NSApplicationLoad();
     NSLog(NSString.stringWith("Hello from Cocoa, here is some number: %d/n"w)._id, 3);
 
     NSApplication app = NSApplication.sharedApplication();
@@ -20,7 +19,6 @@ void main(string[] args){
     NSWindow win = NSWindow.alloc();
     NSRect rect = NSRect(NSPoint(0.0, 0.0), NSSize(200.0, 200.0));
 
-    //win.init_;
     win.initWithContentRect(rect, 
         NSTitledWindowMask | NSMiniaturizableWindowMask | NSClosableWindowMask | NSResizableWindowMask, 
         NSBackingStoreBuffered, NO);
