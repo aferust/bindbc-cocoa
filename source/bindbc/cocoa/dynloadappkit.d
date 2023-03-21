@@ -40,6 +40,7 @@ AppkitSupport loadAppkit(const(char)* libName)
     auto errCount = errorCount();
 
     lib.bindSymbol(cast(void**)&NSApplicationLoad, "NSApplicationLoad");
+    lib.bindSymbol(cast(void**)&NSApplicationMain, "NSApplicationMain");
     // Core Image
     // MAYDO load from proper global variables
     kCIFormatARGB8 = 23;

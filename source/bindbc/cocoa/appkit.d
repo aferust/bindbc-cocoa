@@ -23,11 +23,13 @@ version(X86_64)
 extern (C) nothrow @nogc
 {
     alias bool function() pfNSApplicationLoad;
+    alias int function(int argc, const(char)** argv) pfNSApplicationMain;
 }
 
 __gshared
 {
     pfNSApplicationLoad NSApplicationLoad;
+    pfNSApplicationMain NSApplicationMain;
 }
 
 alias NSApplicationActivationPolicy = NSInteger;
