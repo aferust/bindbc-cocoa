@@ -14,10 +14,16 @@ module bindbc.cocoa;
 
 public import bindbc.cocoa.runtime;
 public import bindbc.cocoa.foundation;
-public import bindbc.cocoa.appkit;
 public import bindbc.cocoa.coreimage;
 
 public import bindbc.cocoa.dynloadruntime;
 public import bindbc.cocoa.dynloadfoundation;
 public import bindbc.cocoa.dynloadappkit;
 public import bindbc.cocoa.dynloadcoregraphics;
+
+public {
+    import bindbc.cocoa.appkit;
+    import bindbc.cocoa.controls.nscontrol;
+    import bindbc.cocoa.controls.nsbutton;
+    import bindbc.cocoa.controls.nsimage;
+}

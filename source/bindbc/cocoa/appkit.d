@@ -377,6 +377,24 @@ nothrow @nogc:
         alias fun_t = extern(C) void function (id, SEL, BOOL) nothrow @nogc;
         (cast(fun_t)objc_msgSend)(_id, sel!"setAcceptsMouseMovedEvents:", b ? YES : NO);
     }
+
+    void center()
+    {
+        alias fun_t = extern(C) void function (id, const(SEL)) nothrow @nogc;
+        (cast(fun_t)objc_msgSend)(_id, sel!"center");
+    }
+
+    void setIsVisible(BOOL value)
+    {
+        alias fun_p = extern(C) void function (id, SEL, BOOL) nothrow @nogc;
+        (cast(fun_p)objc_msgSend)(_id, sel!"setIsVisible:", value);
+    }
+
+    void setTitle(NSString value)
+    {
+        alias fun_p = extern(C) void function (id, SEL, id) nothrow @nogc;
+        (cast(fun_p)objc_msgSend)(_id, sel!"setTitle:", value._id);
+    }
 }
 
 

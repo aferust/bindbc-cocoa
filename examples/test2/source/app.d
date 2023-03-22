@@ -17,25 +17,37 @@ void main(string[] args){
     NSApplication app = NSApplication.sharedApplication();
     
     NSWindow win = NSWindow.alloc();
-    NSRect rect = NSRect(NSPoint(0.0, 0.0), NSSize(200.0, 200.0));
+    NSRect rect = NSRect(NSPoint(0.0, 0.0), NSSize(500.0, 500.0));
 
     win.initWithContentRect(rect, 
         NSTitledWindowMask | NSMiniaturizableWindowMask | NSClosableWindowMask | NSResizableWindowMask, 
         NSBackingStoreBuffered, NO);
     
-    NSView nv = NSView.alloc;
+    /*NSView nv = NSView.alloc;
     nv.initWithFrame(NSMakeRect (77, 3, 34, 24));
     win.contentView.addSubview(nv);
-    win.makeFirstResponder(nv);
+    win.makeFirstResponder(nv);*/
     
-    alias fun_t = extern(C) void function (id, SEL, id) nothrow @nogc;
-    (cast(fun_t)objc_msgSend)(win._id, sel!"setTitle:", NSString.stringWith("My Test App"w)._id);
+    NSButton but1 = NSButton.alloc();
+    but1.initWithFrame(NSMakeRect (77, 3, 34, 24));
+    but1.setTitle(NSString.stringWith("hello"w));
+    //but1.setButtonType(NSRadioButton);
+    but1.control.setAction(&onClicked);
+    but1.setAlternateTitle(NSString.stringWith("my alter"w));
+    
+    win.contentView().addSubview(but1.contentView());
+
+    win.setTitle(NSString.stringWith("My Test App"w));
     
     win.contentView.setFrameSize(NSSize(200.0, 200.0));
-
-    alias fun_p = extern(C) void function (id, SEL, BOOL) nothrow @nogc;
-    (cast(fun_p)objc_msgSend)(win._id, sel!"setIsVisible:", YES);
+    win.center();
+    win.setIsVisible(YES);
 
     app.setDelegate(win._id);
     app.run();
+}
+
+import std.conv;
+extern (C) void onClicked(id self, SEL sel){
+    writefln("You clicked the button with title `%s`", NSButton(self).title.UTF8String.to!string);
 }
