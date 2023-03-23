@@ -20,6 +20,12 @@ void main(string[] args){
         NSTitledWindowMask | NSMiniaturizableWindowMask | NSClosableWindowMask | NSResizableWindowMask, 
         NSBackingStoreBuffered, NO);
     
+    NSTextField display = NSTextField.alloc; display.initWithFrame(NSMakeRect (40, 84, 182, 24));
+    display.setEditable(NO);
+    display.setBezeled(YES);
+    display.setDrawsBackground(YES);
+    display.setAlignment(right);
+
     NSButton[18] buttons;
 
     buttons[0] = NSButton.alloc; buttons[0].initWithFrame(NSMakeRect (77, 3, 34, 24));
@@ -169,6 +175,9 @@ void main(string[] args){
         win.contentView().addSubview(but.contentView());
         but.release;
     }
+
+    win.contentView().addSubview(display.contentView());
+    display.release;
 
     win.setTitle(NSString.stringWith("Calculator"w));
     

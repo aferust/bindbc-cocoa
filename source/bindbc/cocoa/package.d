@@ -26,4 +26,8 @@ public {
     import bindbc.cocoa.controls.nscontrol;
     import bindbc.cocoa.controls.nsbutton;
     import bindbc.cocoa.controls.nsimage;
+    import bindbc.cocoa.controls.nstextfield;
+    import bindbc.cocoa.controls.nscell;
+    import bindbc.cocoa.controls.nscolor;
+    import bindbc.cocoa.controls.nsfont;
 }

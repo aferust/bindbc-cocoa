@@ -50,12 +50,6 @@ nothrow @nogc:
         return NSControl(_id);
     }
 
-    void initWithFrame(NSRect rect)
-    {
-        alias fun_t = extern(C) void function (id, SEL, NSRect) nothrow @nogc;
-        (cast(fun_t)objc_msgSend)(_id, sel!"initWithFrame:", rect);
-    }
-
     void setButtonType(NSButtonType aType)
     {
         alias fun_t = extern(C) void function (id, SEL, NSButtonType) nothrow @nogc;
