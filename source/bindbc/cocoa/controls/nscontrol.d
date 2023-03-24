@@ -241,7 +241,7 @@ nothrow @nogc:
         return (cast(fun_t)objc_msgSend)(_id, sel!"action");
     }
 
-    void setAction(void function(id, SEL, ...) fun){
+    void setAction(Func)(Func fun){
         
         import core.stdc.stdio;
         
@@ -252,7 +252,11 @@ nothrow @nogc:
 
         SEL _sel = varsel_registerName(m_name.ptr);
 
-        class_addMethod(_id.isa, _sel, cast(IMP)fun, "v@:i@");
+        class_addMethod(_id.isa, _sel, cast(IMP)fun, "@:i@");
+        setAction(_sel);
+    }
+
+    void setAction(ref SEL _sel){
         alias fun_t = extern(C) void function (id, SEL, SEL) nothrow @nogc;
         (cast(fun_t)objc_msgSend)(_id, sel!"setAction:", _sel);
     }

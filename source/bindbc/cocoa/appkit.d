@@ -352,6 +352,12 @@ nothrow @nogc:
         (cast(fun_t)objc_msgSend)(_id, sel!"makeKeyAndOrderFront:");
     }
 
+    void orderFront()
+    {
+        alias fun_t = extern(C) void function (id, SEL) nothrow @nogc;
+        (cast(fun_t)objc_msgSend)(_id, sel!"orderFront:");
+    }
+
     bool makeFirstResponder(NSResponder responder)
     {
         alias fun_t = extern(C) BOOL function (id, SEL, id) nothrow @nogc;
