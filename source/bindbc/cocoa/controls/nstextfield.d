@@ -52,7 +52,7 @@ nothrow @nogc:
     void selectText(id sender)
     {
         alias fun_t = extern(C) void function (id, SEL, id) nothrow @nogc;
-        (cast(fun_t)objc_msgSend)(_id, sel!"setSelectable:", sender);
+        (cast(fun_t)objc_msgSend)(_id, sel!"selectText:", sender);
     }
 
     id nextText()

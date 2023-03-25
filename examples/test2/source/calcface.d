@@ -19,6 +19,7 @@ struct CalcFace
         display.setBezeled(YES);
         display.setDrawsBackground(YES);
         display.setAlignment(right);
+        display.setSelectable(NO);
 
         buttons[0] = NSButton.alloc; buttons[0].initWithFrame(NSMakeRect (77, 3, 34, 24));
         buttons[0].setButtonType(NSToggleButton);
