@@ -248,11 +248,11 @@ nothrow @nogc:
         char* _cp = cast(char*)_id;
 
         char[32] m_name;
-        sprintf(m_name.ptr, "%p_action", _cp);
+        sprintf(m_name.ptr, "a%p_action:", _cp);
 
         SEL _sel = varsel_registerName(m_name.ptr);
 
-        class_addMethod(_id.isa, _sel, cast(IMP)fun, "@:i@");
+        class_addMethod(NSObject.getClass, _sel, cast(IMP)fun, "@:i@");
         setAction(_sel);
     }
 

@@ -20,6 +20,13 @@ extern (C) nothrow @nogc
     alias void* function(NSUInteger bytes) pfNSAllocateMemoryPages;
     alias void function (void* ptr, NSUInteger bytes) pfNSDeallocateMemoryPages;
     alias void function(id format, ...) pfNSLog;
+    
+    alias Class function(id aClassName) pfNSClassFromString;
+    alias SEL function(id aString) pfNSSelectorFromString;
+    alias id function(Class aClass) pfNSStringFromClass;
+    alias id function(SEL aSelector) pfNSStringFromSelector;
+    alias id function(Protocol* aProtocol) pfNSStringFromProtocol;
+    alias Protocol* function(id aString) pfNSProtocolFromString;
 }
 
 __gshared
@@ -27,6 +34,13 @@ __gshared
     pfNSDeallocateMemoryPages NSDeallocateMemoryPages;
     pfNSAllocateMemoryPages NSAllocateMemoryPages;
     pfNSLog NSLog;
+
+    pfNSClassFromString NSClassFromString;
+    pfNSSelectorFromString NSSelectorFromString;
+    pfNSStringFromClass NSStringFromClass;
+    pfNSStringFromSelector NSStringFromSelector;
+    pfNSStringFromProtocol NSStringFromProtocol;
+    pfNSProtocolFromString NSProtocolFromString;
 }
 
 __gshared

@@ -44,6 +44,7 @@ RTSupport loadRT(const(char)* libName)
     lib.bindSymbol(cast(void**)&varobjc_allocateClassPair, "objc_allocateClassPair");
     lib.bindSymbol(cast(void**)&objc_disposeClassPair, "objc_disposeClassPair");
     lib.bindSymbol(cast(void**)&varobjc_getClass, "objc_getClass");
+    lib.bindSymbol(cast(void**)&objc_getMetaClass, "objc_getMetaClass");
     lib.bindSymbol(cast(void**)&varobjc_lookUpClass, "objc_lookUpClass");
 
     lib.bindSymbol(cast(void**)&objc_msgSend, "objc_msgSend");

@@ -187,6 +187,7 @@ extern (C) nothrow @nogc
     alias Class function (Class superclass, const(char)* name, size_t extraBytes) pfobjc_allocateClassPair;
     alias void function(Class cls) pfobjc_disposeClassPair;
     alias id function (const(char)* name) pfobjc_getClass;
+    alias id function(const(char)* name) pfobjc_getMetaClass;
     alias id function (const(char)* name) pfobjc_lookUpClass;
 
     alias id function (id theReceiver, SEL theSelector, ...) pfobjc_msgSend;
@@ -228,6 +229,7 @@ __gshared
     pfobjc_allocateClassPair varobjc_allocateClassPair;
     pfobjc_disposeClassPair objc_disposeClassPair;
     pfobjc_getClass varobjc_getClass;
+    pfobjc_getMetaClass objc_getMetaClass;
     pfobjc_lookUpClass varobjc_lookUpClass;
 
     pfobjc_msgSend objc_msgSend;
