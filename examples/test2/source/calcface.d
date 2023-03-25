@@ -99,14 +99,14 @@ struct CalcFace
         buttons[10].setTitle(NSString.stringWith("."w));
         buttons[10].setState(NO);
         buttons[10].setKeyEquivalent(NSString.stringWith("."w));
-        // [buttons[10] setAction: @selector(decimalSeparator:)];
+        buttons[10].setAction(&calcbrain.decimalSeparator);
 
         buttons[11] = NSButton.alloc; buttons[11].initWithFrame(NSMakeRect (77, 57, 34, 24));
         buttons[11].setButtonType(NSToggleButton);
         buttons[11].setTitle(NSString.stringWith("SQR"w));
         buttons[11].setState(NO);
         buttons[11].setKeyEquivalent(NSString.stringWith("S"w));
-        // [buttons[11] setAction: @selector(squareRoot:)];
+        buttons[11].setAction(&calcbrain.squareRoot);
 
         buttons[12] = NSButton.alloc; buttons[12].initWithFrame(NSMakeRect (3, 30, 34, 24));
         buttons[12].setButtonType(NSToggleButton);
@@ -114,7 +114,7 @@ struct CalcFace
         buttons[12].setTag(addition);
         buttons[12].setState(NO);
         buttons[12].setKeyEquivalent(NSString.stringWith("+"w));
-        // [buttons[12] setAction: @selector(operation:)];
+        buttons[12].setAction(&calcbrain.operation);
 
         buttons[13] = NSButton.alloc; buttons[13].initWithFrame(NSMakeRect (40, 30, 34, 24));
         buttons[13].setButtonType(NSToggleButton);
@@ -122,7 +122,7 @@ struct CalcFace
         buttons[13].setTag(subtraction);
         buttons[13].setState(NO);
         buttons[13].setKeyEquivalent(NSString.stringWith("-"w));
-        // [buttons[13] setAction: @selector(operation:)];
+        buttons[13].setAction(&calcbrain.operation);
 
         buttons[14] = NSButton.alloc; buttons[14].initWithFrame(NSMakeRect (3, 57, 34, 24));
         buttons[14].setButtonType(NSToggleButton);
@@ -130,7 +130,7 @@ struct CalcFace
         buttons[14].setTag(multiplication);
         buttons[14].setState(NO);
         buttons[14].setKeyEquivalent(NSString.stringWith("*"w));
-        // [buttons[14] setAction: @selector(operation:)];
+        buttons[14].setAction(&calcbrain.operation);
 
         buttons[15] = NSButton.alloc; buttons[15].initWithFrame(NSMakeRect (40, 57, 34, 24));
         buttons[15].setButtonType(NSToggleButton);
@@ -138,21 +138,21 @@ struct CalcFace
         buttons[15].setTag(division);
         buttons[15].setState(NO);
         buttons[15].setKeyEquivalent(NSString.stringWith("/"w));
-        // [buttons[15] setAction: @selector(operation:)];
+        buttons[15].setAction(&calcbrain.operation);
 
         buttons[16] = NSButton.alloc; buttons[16].initWithFrame(NSMakeRect (3, 84, 34, 24));
         buttons[16].setButtonType(NSToggleButton);
         buttons[16].setTitle(NSString.stringWith("CL"w));
         buttons[16].setState(NO);
         buttons[16].setKeyEquivalent(NSString.stringWith("C"w));
-        // [buttons[16] setAction: @selector(clear:)];
+        buttons[16].setAction(&calcbrain.clear);
 
         buttons[17] = NSButton.alloc; buttons[17].initWithFrame(NSMakeRect (3, 3, 34, 24));
         buttons[17].setButtonType(NSToggleButton);
         buttons[17].setTitle(NSString.stringWith("="w));
         buttons[17].setState(NO);
         buttons[17].setKeyEquivalent(NSString.stringWith("="w));
-        // [buttons[17] setAction: @selector(equal:)];
+        buttons[17].setAction(&calcbrain.equal);
 
         this.makeFirstResponder(NSResponder(buttons[17]._id));
 
@@ -197,9 +197,9 @@ void onClicked(id self, SEL sel, ...){
 }
 */
 enum : NSInteger{
-    none,
-    addition,
-    subtraction,
-    multiplication,
-    division
+    none = 0,
+    addition = 1,
+    subtraction = 2,
+    multiplication = 3,
+    division = 4
 }
