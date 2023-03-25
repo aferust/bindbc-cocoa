@@ -136,7 +136,7 @@ void operation(id sender, SEL sel, ...){
     
 }
 
-void squareRoot(id sender){
+void squareRoot(id sender, SEL sel, ...){
   if (op == none)
     {
       result = sqrt (enteredNumber);
@@ -148,6 +148,6 @@ void squareRoot(id sender){
   else // operation
     {	 
       equal(null);
-      squareRoot(sender);
+      squareRoot(sender, null);
     }
 }
