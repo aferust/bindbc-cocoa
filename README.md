@@ -1,7 +1,9 @@
 # bindbc-cocoa
 
-- A dynamic D binding to cocoa, which are compatible with @nogc, nothrow, and BetterC (WIP). This is based on dplug:macos derelict-cocoa
-- some basic controls are available at the moment (NSWindow, NSButton, and NSTextField).
+- A dynamic D binding to cocoa, which are compatible with @nogc, nothrow, and BetterC (WIP).
+- This is based on dplug:macos derelict-cocoa
+- The Example calculator app works on Windows (via GNUstep) and Macos.
+- Some basic controls are available at the moment (NSWindow, NSButton, and NSTextField).
 
 - Simple Hello World
 ```d
