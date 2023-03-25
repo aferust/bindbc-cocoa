@@ -1,7 +1,6 @@
 module app;
 
 import std.stdio;
-import core.stdc.stdio;
 
 import bindbc.cocoa;
 

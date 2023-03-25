@@ -1,5 +1,5 @@
 {
-	"name": "test2",
+	"name": "calculator",
     "dependencies": {
         "bindbc-cocoa": {"path": "../../"}
     }
