@@ -12,3 +12,4 @@ docs/
 *.pdb
 *.s
 *.dll
+.DS_Store
