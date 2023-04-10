@@ -9,15 +9,16 @@ import calcbrain;
 
 void main(string[] args){
     // with Apple's cocoa
-    /+
-    auto _rt = loadRT("/System/Library/Frameworks/Cocoa.framework/Cocoa"); writeln(_rt);
-    auto _fo = loadFoundation("/System/Library/Frameworks/Cocoa.framework/Cocoa"); writeln(_fo);
-    auto _ak = loadAppkit("/System/Library/Frameworks/Cocoa.framework/Cocoa"); writeln(_ak);
-    +/
+    version(OSX){
+        auto _rt = loadRT("/System/Library/Frameworks/Cocoa.framework/Cocoa"); writeln(_rt);
+        auto _fo = loadFoundation("/System/Library/Frameworks/Cocoa.framework/Cocoa"); writeln(_fo);
+        auto _ak = loadAppkit("/System/Library/Frameworks/Cocoa.framework/Cocoa"); writeln(_ak);
     // with GNUstep
-    auto _rt = loadRT("D:/GNUstep/x64/Release/bin/objc.dll"); writeln(_rt);
-    auto _fo = loadFoundation("D:/GNUstep/x64/Release/bin/gnustep-base-1_29.dll"); writeln(_fo); 
-    auto _ak = loadAppkit("D:/GNUstep/x64/Release/bin/gnustep-gui-0.dll"); writeln(_ak);
+    }else version(Windows){
+        auto _rt = loadRT("D:/GNUstep/x64/Release/bin/objc.dll"); writeln(_rt);
+        auto _fo = loadFoundation("D:/GNUstep/x64/Release/bin/gnustep-base-1_29.dll"); writeln(_fo); 
+        auto _ak = loadAppkit("D:/GNUstep/x64/Release/bin/gnustep-gui-0.dll"); writeln(_ak);
+    }else static assert(0);
 
     NSApplication app = NSApplication.sharedApplication();
     
